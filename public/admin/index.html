@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Admin | Vivek Computer</title>
+  <style>
+    :root{
+      --bg:#f1f5f9; --card:#fff; --line:#e2e8f0; --ink:#0f172a; --muted:#64748b;
+      --blue:#0b5ed7; --blue-d:#0847a8; --red:#dc2626; --green:#15803d;
+      --job:#0b5ed7; --admit:#d97706; --result:#15803d;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 'Noto Sans Devanagari','Poppins',system-ui,-apple-system,'Segoe UI',sans-serif}
+    [hidden]{display:none!important}
+    h1,h2,h3{margin:0}
+    a{color:var(--blue)}
+    .muted{color:var(--muted)}
+    .wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+
+    /* controls */
+    .inp{width:100%;min-height:42px;padding:9px 12px;border:1px solid #cbd5e1;border-radius:10px;background:#fff;color:var(--ink);font:inherit}
+    textarea.inp{min-height:78px;resize:vertical}
+    .inp:focus,.btn:focus-visible,.seg input:focus-visible+span{outline:2px solid var(--blue);outline-offset:1px}
+    label.lbl{display:block;margin:0 0 5px;font-size:13px;font-weight:600;color:#334155}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:42px;padding:8px 16px;border:1px solid transparent;border-radius:10px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none}
+    .btn.primary{background:var(--blue);color:#fff}
+    .btn.primary:hover{background:var(--blue-d)}
+    .btn.primary[disabled]{opacity:.6;cursor:wait}
+    .btn.ghost{background:#fff;color:var(--ink);border-color:#cbd5e1}
+    .btn.ghost:hover{background:#f8fafc}
+    .btn.danger{background:#fff;color:var(--red);border-color:#fecaca}
+    .btn.danger:hover{background:#fef2f2}
+    .btn.sm{min-height:34px;padding:4px 12px;font-size:13px}
+    .btn.block{width:100%}
+
+    /* login */
+    .login{min-height:100vh;display:grid;place-items:center;padding:16px}
+    .login-card{width:100%;max-width:380px;padding:28px}
+    .login-card h1{font-size:22px}
+    .err{min-height:20px;margin:8px 0;color:var(--red);font-size:13px}
+
+    /* layout */
+    .topbar{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line)}
+    .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:58px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px}
+    .topbar nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .topbar nav a{font-size:14px;font-weight:600;text-decoration:none}
+    .layout{display:grid;gap:20px;grid-template-columns:minmax(0,1fr);padding:20px 0 60px}
+    @media(min-width:1000px){.layout{grid-template-columns:minmax(0,3fr) minmax(0,2fr);align-items:start}}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 8px 30px rgba(15,23,42,.05)}
+    .card+.card{margin-top:20px}
+    .card h2{font-size:17px;margin-bottom:6px}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    .row>.inp{flex:1 1 260px}
+    .msg{min-height:20px;margin:10px 0 0;font-size:13px}
+    .msg.ok{color:var(--green)} .msg.bad{color:var(--red)}
+    .field{margin-top:14px}
+    .grid2{display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+    @media(min-width:640px){.grid2{grid-template-columns:1fr 1fr}}
+
+    /* category switch */
+    .seg{display:flex;gap:8px;flex-wrap:wrap}
+    .seg label{cursor:pointer}
+    .seg input{position:absolute;opacity:0}
+    .seg span{display:inline-block;padding:8px 14px;border:1px solid #cbd5e1;border-radius:999px;background:#fff;font-size:14px;font-weight:600}
+    .seg input:checked+span{color:#fff;border-color:transparent}
+    .seg .c-job input:checked+span{background:var(--job)}
+    .seg .c-admit input:checked+span{background:var(--admit)}
+    .seg .c-result input:checked+span{background:var(--result)}
+
+    /* repeaters */
+    .rep{display:grid;gap:8px;margin-top:6px}
+    .rep-row{display:grid;gap:6px;grid-template-columns:minmax(0,1fr) 40px;padding:10px;border:1px solid var(--line);border-radius:12px;background:#f8fafc}
+    .rep-row .cols{display:grid;gap:6px;grid-template-columns:minmax(0,1fr)}
+    @media(min-width:640px){
+      .rep-row.d .cols{grid-template-columns:150px minmax(0,1fr) minmax(0,1.4fr)}
+      .rep-row.l .cols{grid-template-columns:minmax(0,1fr) minmax(0,1.6fr)}
+    }
+    .x{align-self:start;width:40px;height:42px;border:1px solid #fecaca;border-radius:10px;background:#fff;color:var(--red);font-size:18px;cursor:pointer}
+    .checks{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:14px}
+    .checks label{display:flex;gap:8px;align-items:flex-start;cursor:pointer}
+    .checks input{margin-top:4px;width:16px;height:16px}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+
+    /* list */
+    .tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+    .tab{padding:6px 12px;border:1px solid #cbd5e1;border-radius:999px;background:#fff;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+    .tab[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .list{display:grid;gap:8px;margin-top:12px;max-height:70vh;overflow:auto}
+    .item{padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff}
+    .item h3{font-size:14px;line-height:1.4}
+    .item .meta{display:flex;flex-wrap:wrap;gap:4px 10px;margin:6px 0 10px;font-size:12px;color:var(--muted);align-items:center}
+    .chip{padding:1px 9px;border-radius:999px;color:#fff;font-size:11px;font-weight:700}
+    .chip.job{background:var(--job)} .chip.admit{background:var(--admit)} .chip.result{background:var(--result)}
+    .item .acts{display:flex;gap:6px;flex-wrap:wrap}
+    .empty{padding:18px;border:1px dashed #cbd5e1;border-radius:12px;color:var(--muted);text-align:center;font-size:14px}
+
+    .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);max-width:92vw;padding:11px 18px;border-radius:12px;background:var(--ink);color:#fff;font-size:14px;font-weight:600;box-shadow:0 12px 30px rgba(0,0,0,.25)}
+    .toast.bad{background:var(--red)}
+  </style>
+</head>
+<body>
+
+<!-- Login -->
+<div id="loginView" class="login" hidden>
+  <form id="loginForm" class="card login-card">
+    <h1>Vivek Computer</h1>
+    <p class="muted" style="margin:4px 0 18px">Admin पैनल — लॉगिन करें</p>
+    <label class="lbl" for="pw">Password</label>
+    <input id="pw" type="password" class="inp" autocomplete="current-password" required>
+    <p id="loginErr" class="err" role="alert"></p>
+    <button class="btn primary block" type="submit">लॉगिन</button>
+  </form>
+</div>
+
+<!-- App -->
+<div id="appView" hidden>
+  <header class="topbar">
+    <div class="wrap">
+      <strong>Vivek Computer · Admin</strong>
+      <nav>
+        <a href="/" target="_blank" rel="noopener">साइट देखें</a>
+        <a href="/api/admin/backup" download>Backup डाउनलोड</a>
+        <button id="logoutBtn" class="btn ghost sm" type="button">Logout</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap layout">
+    <div>
+      <section class="card">
+        <h2>1. लिंक से भरें <span class="muted" style="font-weight:400">(चाहें तो)</span></h2>
+        <p class="muted" style="margin:0 0 12px;font-size:14px">SarkariResult या किसी भी भर्ती/एडमिट कार्ड/रिज़ल्ट पेज का लिंक चिपकाएँ। तारीख़ें, फ़ीस, वैकेंसी और ज़रूरी लिंक अपने-आप निकल आएँगे — फिर नीचे जाँचकर सुधार लें।</p>
+        <div class="row">
+          <input id="fetchUrl" type="url" class="inp" placeholder="https://www.sarkariresult.com/..." aria-label="पेज का लिंक">
+          <button id="fetchBtn" class="btn primary" type="button">विवरण निकालें</button>
+        </div>
+        <p id="fetchMsg" class="msg" aria-live="polite"></p>
+      </section>
+
+      <form id="postForm" class="card" novalidate>
+        <h2 id="formTitle">2. पोस्ट की जानकारी</h2>
+
+        <div class="field">
+          <span class="lbl">किस सेक्शन में दिखाना है?</span>
+          <div class="seg" role="radiogroup" aria-label="Category">
+            <label class="c-job"><input type="radio" name="category" value="job" checked><span>नई भर्ती</span></label>
+            <label class="c-admit"><input type="radio" name="category" value="admit"><span>एडमिट कार्ड</span></label>
+            <label class="c-result"><input type="radio" name="category" value="result"><span>रिज़ल्ट</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="lbl" for="f_title">Title (शीर्षक)</label>
+          <input id="f_title" class="inp" maxlength="200" placeholder="जैसे: UPSSSC PET 2026 Online Form" required>
+        </div>
+
+        <div class="grid2">
+          <div class="field">
+            <label class="lbl" for="f_org">विभाग / बोर्ड <span class="muted">(optional)</span></label>
+            <input id="f_org" class="inp" maxlength="120" placeholder="जैसे: UPSSSC">
+          </div>
+          <div class="field">
+            <label class="lbl" for="f_note">छोटी टिप्पणी <span class="muted">(optional)</span></label>
+            <input id="f_note" class="inp" maxlength="300" placeholder="जैसे: 12वीं पास भी आवेदन कर सकते हैं">
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="field">
+            <label class="lbl" for="f_date">मुख्य तारीख़ (कार्ड पर दिखेगी)</label>
+            <input id="f_date" type="date" class="inp">
+          </div>
+          <div class="field">
+            <label class="lbl" for="f_dlabel">तारीख़ का नाम</label>
+            <input id="f_dlabel" class="inp" maxlength="30" list="dlabels" placeholder="अंतिम तिथि">
+            <datalist id="dlabels"><option value="अंतिम तिथि"><option value="परीक्षा तिथि"><option value="रिज़ल्ट तिथि"><option value="एडमिट कार्ड तिथि"></datalist>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="lbl">ज़रूरी जानकारी (तारीख़ें, फ़ीस, उम्र, वैकेंसी...)</span>
+          <div id="detailRows" class="rep"></div>
+          <button id="addDetail" class="btn ghost sm" type="button" style="margin-top:8px">+ लाइन जोड़ें</button>
+        </div>
+
+        <div class="field">
+          <span class="lbl">ज़रूरी लिंक (Apply, Notification, Admit Card...)</span>
+          <div id="linkRows" class="rep"></div>
+          <button id="addLink" class="btn ghost sm" type="button" style="margin-top:8px">+ लिंक जोड़ें</button>
+        </div>
+
+        <div class="field">
+          <label class="lbl" for="f_source">Source लिंक <span class="muted">(सिर्फ आपके लिए सेव होता है)</span></label>
+          <input id="f_source" type="url" class="inp" placeholder="https://...">
+        </div>
+
+        <div class="checks">
+          <label><input id="f_ticker" type="checkbox" checked><span>ऊपर चलने वाले ticker में दिखाएँ</span></label>
+          <label><input id="f_showsrc" type="checkbox"><span>Source लिंक साइट पर भी दिखाएँ</span></label>
+        </div>
+
+        <p id="formMsg" class="msg" role="alert"></p>
+        <div class="actions">
+          <button id="saveBtn" class="btn primary" type="submit">Publish करें</button>
+          <button id="resetBtn" class="btn ghost" type="button">खाली करें</button>
+        </div>
+      </form>
+    </div>
+
+    <aside class="card">
+      <h2>3. अभी की पोस्ट <span id="countAll" class="muted" style="font-weight:400"></span></h2>
+      <input id="q" type="search" class="inp" placeholder="खोजें..." aria-label="पोस्ट खोजें">
+      <div class="tabs" role="group" aria-label="Filter">
+        <button class="tab" type="button" data-f="all" aria-pressed="true">सब</button>
+        <button class="tab" type="button" data-f="job" aria-pressed="false">भर्ती</button>
+        <button class="tab" type="button" data-f="admit" aria-pressed="false">एडमिट कार्ड</button>
+        <button class="tab" type="button" data-f="result" aria-pressed="false">रिज़ल्ट</button>
+      </div>
+      <div id="list" class="list"></div>
+    </aside>
+  </main>
+</div>
+
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script>
+(() => {
+  'use strict';
+  const $ = (s) => document.querySelector(s);
+  const CAT_LABEL = { job: 'नई भर्ती', admit: 'एडमिट कार्ड', result: 'रिज़ल्ट' };
+  const DEFAULT_DLABEL = { job: 'अंतिम तिथि', admit: 'परीक्षा तिथि', result: 'रिज़ल्ट तिथि' };
+  let posts = [];
+  let editingId = null;
+  let filter = 'all';
+
+  /* ---------- helpers ---------- */
+  async function api(url, method, body) {
+    const opt = { method: method || 'GET', credentials: 'same-origin', headers: {} };
+    if (body !== undefined) { opt.headers['Content-Type'] = 'application/json'; opt.body = JSON.stringify(body); }
+    const r = await fetch(url, opt);
+    let data = null;
+    try { data = await r.json(); } catch (_) { /* no body */ }
+    if (r.status === 401 && !url.endsWith('/login')) { showLogin(); throw new Error('Session खत्म हो गया — फिर से login करें'); }
+    if (!r.ok) throw new Error((data && data.error) || 'कुछ गड़बड़ हुई');
+    return data;
+  }
+
+  let toastTimer;
+  function toast(text, bad) {
+    const t = $('#toast');
+    t.textContent = text;
+    t.className = 'toast' + (bad ? ' bad' : '');
+    t.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { t.hidden = true; }, 3500);
+  }
+
+  function setMsg(el, text, kind) { el.textContent = text || ''; el.className = 'msg' + (kind ? ' ' + kind : ''); }
+  const getCat = () => document.querySelector('input[name="category"]:checked').value;
+  const setCat = (c) => { const r = document.querySelector(`input[name="category"][value="${c}"]`); if (r) r.checked = true; };
+
+  /* ---------- views ---------- */
+  function showLogin() { $('#appView').hidden = true; $('#loginView').hidden = false; $('#pw').focus(); }
+  function showApp() { $('#loginView').hidden = true; $('#appView').hidden = false; }
+
+  $('#loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    $('#loginErr').textContent = '';
+    try {
+      await api('/api/admin/login', 'POST', { password: $('#pw').value });
+      $('#pw').value = '';
+      showApp();
+      await loadPosts();
+    } catch (err) { $('#loginErr').textContent = err.message; }
+  });
+
+  $('#logoutBtn').addEventListener('click', async () => {
+    try { await api('/api/admin/logout', 'POST', {}); } catch (_) { /* ignore */ }
+    showLogin();
+  });
+
+  /* ---------- repeaters (built with DOM APIs, so typed text is never treated as HTML) ---------- */
+  function mk(tag, attrs, props) {
+    const el = document.createElement(tag);
+    Object.entries(attrs || {}).forEach(([k, v]) => el.setAttribute(k, v));
+    Object.assign(el, props || {});
+    return el;
+  }
+  function removeBtn(row) {
+    const b = mk('button', { type: 'button', class: 'x', 'aria-label': 'यह लाइन हटाएँ' }, { textContent: '×' });
+    b.addEventListener('click', () => row.remove());
+    return b;
+  }
+  function addDetailRow(d) {
+    d = d || {};
+    const row = mk('div', { class: 'rep-row d' });
+    const cols = mk('div', { class: 'cols' });
+    cols.append(
+      mk('input', { class: 'inp', 'data-k': 'group', placeholder: 'ग्रुप (जैसे Important Dates)', 'aria-label': 'ग्रुप', maxlength: 60 }, { value: d.group || '' }),
+      mk('input', { class: 'inp', 'data-k': 'label', placeholder: 'नाम (जैसे Last Date)', 'aria-label': 'नाम', maxlength: 120 }, { value: d.label || '' }),
+      mk('input', { class: 'inp', 'data-k': 'value', placeholder: 'जानकारी (जैसे 30/10/2026)', 'aria-label': 'जानकारी', maxlength: 500 }, { value: d.value || '' })
+    );
+    row.append(cols, removeBtn(row));
+    $('#detailRows').append(row);
+  }
+  function addLinkRow(l) {
+    l = l || {};
+    const row = mk('div', { class: 'rep-row l' });
+    const cols = mk('div', { class: 'cols' });
+    cols.append(
+      mk('input', { class: 'inp', 'data-k': 'label', placeholder: 'बटन का नाम (जैसे Apply Online)', 'aria-label': 'बटन का नाम', maxlength: 80 }, { value: l.label || '' }),
+      mk('input', { class: 'inp', 'data-k': 'url', type: 'url', placeholder: 'https://...', 'aria-label': 'लिंक' }, { value: l.url || '' })
+    );
+    row.append(cols, removeBtn(row));
+    $('#linkRows').append(row);
+  }
+  const readRows = (sel) => [...document.querySelectorAll(`${sel} .rep-row`)].map((row) => {
+    const o = {};
+    row.querySelectorAll('[data-k]').forEach((i) => { o[i.dataset.k] = i.value.trim(); });
+    return o;
+  });
+
+  $('#addDetail').addEventListener('click', () => { addDetailRow(); $('#detailRows').lastElementChild.querySelector('[data-k="label"]').focus(); });
+  $('#addLink').addEventListener('click', () => { addLinkRow(); $('#linkRows').lastElementChild.querySelector('[data-k="label"]').focus(); });
+
+  /* ---------- form ---------- */
+  function fillForm(p) {
+    setCat(p.category || 'job');
+    $('#f_title').value = p.title || '';
+    $('#f_org').value = p.org || '';
+    $('#f_note').value = p.note || '';
+    $('#f_date').value = p.keyDate || '';
+    $('#f_dlabel').value = p.keyDateLabel || DEFAULT_DLABEL[p.category || 'job'];
+    $('#f_source').value = p.source || '';
+    $('#f_ticker').checked = p.ticker !== false;
+    $('#f_showsrc').checked = !!p.showSource;
+    $('#detailRows').replaceChildren();
+    $('#linkRows').replaceChildren();
+    (p.details || []).forEach(addDetailRow);
+    (p.links || []).forEach(addLinkRow);
+  }
+
+  function resetForm() {
+    editingId = null;
+    fillForm({ category: 'job', ticker: true });
+    addDetailRow({ group: 'Important Dates', label: 'Last Date' });
+    addDetailRow();
+    addLinkRow({ label: 'Apply Online' });
+    addLinkRow({ label: 'Official Notification' });
+    $('#formTitle').textContent = '2. पोस्ट की जानकारी';
+    $('#saveBtn').textContent = 'Publish करें';
+    setMsg($('#formMsg'), '');
+  }
+
+  document.querySelectorAll('input[name="category"]').forEach((r) => r.addEventListener('change', () => {
+    const cur = $('#f_dlabel').value.trim();
+    if (!cur || Object.values(DEFAULT_DLABEL).includes(cur)) $('#f_dlabel').value = DEFAULT_DLABEL[getCat()];
+  }));
+
+  $('#resetBtn').addEventListener('click', () => { resetForm(); $('#fetchUrl').value = ''; setMsg($('#fetchMsg'), ''); });
+
+  $('#postForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const msg = $('#formMsg');
+    const title = $('#f_title').value.trim();
+    if (!title) { setMsg(msg, 'Title लिखना जरूरी है', 'bad'); $('#f_title').focus(); return; }
+    const body = {
+      category: getCat(),
+      title,
+      org: $('#f_org').value,
+      note: $('#f_note').value,
+      keyDate: $('#f_date').value,
+      keyDateLabel: $('#f_dlabel').value,
+      details: readRows('#detailRows'),
+      links: readRows('#linkRows'),
+      source: $('#f_source').value,
+      showSource: $('#f_showsrc').checked,
+      ticker: $('#f_ticker').checked,
+    };
+    const btn = $('#saveBtn');
+    btn.disabled = true;
+    try {
+      if (editingId) await api(`/api/admin/posts/${editingId}`, 'PUT', body);
+      else await api('/api/admin/posts', 'POST', body);
+      toast(editingId ? 'अपडेट हो गया ✓' : 'Publish हो गया ✓ — साइट पर दिखने लगेगा');
+      resetForm();
+      $('#fetchUrl').value = '';
+      setMsg($('#fetchMsg'), '');
+      await loadPosts();
+    } catch (err) { setMsg(msg, err.message, 'bad'); }
+    finally { btn.disabled = false; }
+  });
+
+  /* ---------- fetch from link ---------- */
+  $('#fetchBtn').addEventListener('click', doFetch);
+  $('#fetchUrl').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); doFetch(); } });
+
+  async function doFetch() {
+    const url = $('#fetchUrl').value.trim();
+    const msg = $('#fetchMsg');
+    if (!url) { setMsg(msg, 'पहले लिंक चिपकाएँ', 'bad'); $('#fetchUrl').focus(); return; }
+    const btn = $('#fetchBtn');
+    btn.disabled = true; btn.textContent = 'पढ़ रहा है…';
+    setMsg(msg, '');
+    try {
+      const d = await api('/api/admin/fetch', 'POST', { url });
+      editingId = null;
+      fillForm(d);
+      $('#formTitle').textContent = '2. पोस्ट की जानकारी (जाँचकर Publish करें)';
+      $('#saveBtn').textContent = 'Publish करें';
+      const found = `${d.details.length} जानकारी और ${d.links.length} लिंक मिले।`;
+      const cat = `Section: ${CAT_LABEL[d.category]}.`;
+      setMsg(msg, d.details.length || d.links.length
+        ? `${found} ${cat} नीचे जाँचें, ग़लत लाइन हटाएँ और Publish करें।`
+        : 'पेज खुल गया पर जानकारी अपने-आप नहीं मिली। नीचे manually भर दें।', d.details.length || d.links.length ? 'ok' : 'bad');
+      $('#postForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (err) {
+      setMsg(msg, err.message, 'bad');
+      $('#f_source').value = url; // keep the link so it is saved with a manual post
+    } finally { btn.disabled = false; btn.textContent = 'विवरण निकालें'; }
+  }
+
+  /* ---------- list ---------- */
+  function fmt(iso) {
+    const d = new Date(iso);
+    return Number.isNaN(d.getTime()) ? '' : d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  function renderList() {
+    const q = $('#q').value.trim().toLowerCase();
+    const list = posts.filter((p) => (filter === 'all' || p.category === filter) && (!q || `${p.title} ${p.org || ''}`.toLowerCase().includes(q)));
+    $('#countAll').textContent = posts.length ? `(${posts.length})` : '';
+    const box = $('#list');
+    box.replaceChildren();
+    if (!list.length) {
+      box.append(mk('div', { class: 'empty' }, { textContent: posts.length ? 'कोई पोस्ट नहीं मिली' : 'अभी कोई पोस्ट नहीं है। बाईं तरफ से पहली पोस्ट बनाएँ।' }));
+      return;
+    }
+    list.forEach((p) => {
+      const item = mk('div', { class: 'item' });
+      const meta = mk('div', { class: 'meta' });
+      meta.append(mk('span', { class: `chip ${p.category}` }, { textContent: CAT_LABEL[p.category] }));
+      meta.append(mk('span', {}, { textContent: fmt(p.createdAt) }));
+      if (p.ticker === false) meta.append(mk('span', {}, { textContent: 'ticker में नहीं' }));
+      const acts = mk('div', { class: 'acts' });
+      const edit = mk('button', { type: 'button', class: 'btn ghost sm' }, { textContent: 'एडिट' });
+      edit.addEventListener('click', () => startEdit(p));
+      const view = mk('a', { class: 'btn ghost sm', href: `/#post-${p.id}`, target: '_blank', rel: 'noopener' }, { textContent: 'साइट पर देखें' });
+      const del = mk('button', { type: 'button', class: 'btn danger sm' }, { textContent: 'हटाएँ' });
+      del.addEventListener('click', () => removePost(p));
+      acts.append(edit, view, del);
+      item.append(mk('h3', {}, { textContent: p.title }), meta, acts);
+      box.append(item);
+    });
+  }
+
+  function startEdit(p) {
+    editingId = p.id;
+    fillForm(p);
+    $('#formTitle').textContent = '2. पोस्ट एडिट कर रहे हैं';
+    $('#saveBtn').textContent = 'अपडेट करें';
+    setMsg($('#formMsg'), '');
+    $('#postForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    $('#f_title').focus({ preventScroll: true });
+  }
+
+  async function removePost(p) {
+    if (!confirm(`यह पोस्ट हमेशा के लिए हट जाएगी:\n\n${p.title}`)) return;
+    try {
+      await api(`/api/admin/posts/${p.id}`, 'DELETE');
+      if (editingId === p.id) resetForm();
+      toast('पोस्ट हटा दी गई');
+      await loadPosts();
+    } catch (err) { toast(err.message, true); }
+  }
+
+  async function loadPosts() {
+    try { posts = await api('/api/admin/posts'); renderList(); }
+    catch (err) { toast(err.message, true); }
+  }
+
+  document.querySelectorAll('.tab').forEach((t) => t.addEventListener('click', () => {
+    filter = t.dataset.f;
+    document.querySelectorAll('.tab').forEach((x) => x.setAttribute('aria-pressed', String(x === t)));
+    renderList();
+  }));
+  $('#q').addEventListener('input', renderList);
+
+  /* ---------- start ---------- */
+  resetForm();
+  api('/api/admin/me').then(() => { showApp(); return loadPosts(); }).catch(showLogin);
+})();
+</script>
+</body>
+</html>

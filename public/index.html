@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vivek Computer - Ratsar Kalan, Ballia. Laptop, desktop, printer repair, accessories, CSC and online services.">
+  <title>Vivek Computer | Ratsar Kalan, Ballia</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root{
+      --blue:#082f75;
+      --blue2:#0b5ed7;
+      --cyan:#22d3ee;
+      --amber:#fbbf24;
+      --green:#16a34a;
+    }
+    *{box-sizing:border-box}
+    body{
+      font-family:'Poppins','Noto Sans Devanagari',sans-serif;
+      background:#f7f9fc;
+      color:#0f172a;
+      overflow-x:hidden;
+    }
+    .hero{
+      background:
+        radial-gradient(circle at 10% 15%, rgba(34,211,238,.20), transparent 28%),
+        radial-gradient(circle at 85% 20%, rgba(251,191,36,.18), transparent 25%),
+        linear-gradient(135deg,#031b46 0%,#073b91 48%,#0b5ed7 100%);
+    }
+    .grid-bg{
+      background-image:linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),
+                       linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);
+      background-size:30px 30px;
+    }
+    .glass{background:rgba(255,255,255,.10);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+    .glass-dark{background:rgba(2,15,40,.58);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+    .logo-ring{
+      box-shadow:0 0 0 5px rgba(255,255,255,.16),0 18px 60px rgba(0,0,0,.28);
+    }
+    .float{
+      animation:float 4.5s ease-in-out infinite;
+    }
+    .pulse-ring{animation:pulseRing 2.2s infinite}
+    .shimmer{
+      background:linear-gradient(110deg,rgba(255,255,255,.08) 30%,rgba(255,255,255,.25) 45%,rgba(255,255,255,.08) 60%);
+      background-size:200% 100%;
+      animation:shimmer 3.2s linear infinite;
+    }
+    .card{
+      transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;
+    }
+    .card:hover{
+      transform:translateY(-8px);
+      box-shadow:0 24px 55px rgba(15,23,42,.12);
+      border-color:rgba(37,99,235,.25);
+    }
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.show{opacity:1;transform:none}
+    .marquee{animation:marquee 22s linear infinite}
+    .soft-shadow{box-shadow:0 18px 55px rgba(15,23,42,.10)}
+    .service-icon{transition:transform .35s ease}
+    .card:hover .service-icon{transform:rotate(-8deg) scale(1.08)}
+    .mobile-menu{max-height:0;overflow:hidden;transition:max-height .35s ease}
+    .mobile-menu.open{max-height:520px}
+    .fab{
+      box-shadow:0 12px 30px rgba(0,0,0,.20);
+      transition:transform .25s ease;
+    }
+    .fab:hover{transform:translateY(-4px) scale(1.04)}
+    .modal-backdrop{background:rgba(2,6,23,.72);backdrop-filter:blur(7px)}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    @keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(34,197,94,.45)}70%{box-shadow:0 0 0 16px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+    @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+      .reveal{opacity:1;transform:none}
+    }
+
+    /* ===== Visibility Fix: Hero section =====
+       Keeps the hero dark even if another stylesheet/Tailwind utility
+       overrides the original background/text colors. */
+    .hero{
+      background:
+        radial-gradient(circle at 10% 15%, rgba(34,211,238,.20), transparent 28%),
+        radial-gradient(circle at 85% 20%, rgba(251,191,36,.18), transparent 25%),
+        linear-gradient(135deg,#031b46 0%,#073b91 48%,#0b5ed7 100%) !important;
+      color:#ffffff !important;
+    }
+
+    .hero h1,
+    .hero h1 *{
+      color:#ffffff !important;
+    }
+
+    .hero h1 .text-amber-300{
+      color:#fbbf24 !important;
+    }
+
+    .hero p.text-blue-100{
+      color:#dbeafe !important;
+    }
+
+    .hero .text-blue-50{
+      color:#eff6ff !important;
+    }
+
+    .hero .text-blue-200{
+      color:#bfdbfe !important;
+    }
+
+    .hero .text-blue-100{
+      color:#dbeafe !important;
+    }
+
+    /* Make the small hero labels/buttons readable too. */
+    .hero .border-white\/15,
+    .hero .border-white\/30{
+      border-color:rgba(255,255,255,.22) !important;
+    }
+
+    .hero .glass{
+      background:rgba(255,255,255,.10) !important;
+    }
+
+  </style>
+  <link rel="stylesheet" href="assets/updates.css">
+</head>
+
+<body>
+  <!-- Live updates ticker (filled from /api/posts) -->
+  <div id="tkBar" class="tk-bar" role="region" aria-label="ताज़ा भर्ती, एडमिट कार्ड और रिज़ल्ट अपडेट" hidden>
+    <div class="tk-label"><span class="tk-dot" aria-hidden="true"></span>ताज़ा अपडेट</div>
+    <div class="tk-viewport"><div class="tk-track" id="tkTrack"></div></div>
+    <button type="button" class="tk-pause" id="tkPause" aria-pressed="false" aria-label="टिकर रोकें"><i class="fa-solid fa-pause" aria-hidden="true"></i></button>
+  </div>
+
+  <!-- Top bar -->
+  <div class="bg-slate-950 text-slate-200 text-xs sm:text-sm">
+    <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-col md:flex-row items-center justify-between gap-2">
+      <div class="flex flex-wrap justify-center md:justify-start gap-x-5 gap-y-1">
+        <span><i class="fa-solid fa-location-dot text-amber-400 mr-1.5"></i>Vishwakarma Chouk / Gandhi Ashram, Ratsar Kalan, Ballia</span>
+        <span><i class="fa-solid fa-clock text-amber-400 mr-1.5"></i>Mon - Sat: 8:00 AM - 8:00 PM</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="tel:+917800504223" class="hover:text-amber-300 transition"><i class="fa-solid fa-phone text-amber-400 mr-1"></i>7800504223</a>
+        <a href="https://www.instagram.com/vivekcomputerratsar/" target="_blank" rel="noopener" class="hover:text-pink-300 transition"><i class="fa-brands fa-instagram text-pink-400 mr-1"></i>Official Instagram</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200/70 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[76px] flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3 min-w-0">
+        <img src="logo.png" alt="Vivek Computer Logo" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover logo-ring shrink-0">
+        <div class="min-w-0">
+          <div class="font-extrabold text-lg sm:text-2xl tracking-tight text-slate-900 leading-none">VIVEK COMPUTER</div>
+          <div class="text-[10px] sm:text-xs font-semibold tracking-[.18em] text-blue-700 mt-1">RATSAR KALAN • BALLIA</div>
+        </div>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-700">
+        <a href="#home" class="hover:text-blue-700 transition">Home</a>
+        <a href="#updates" class="hover:text-blue-700 transition">Jobs &amp; Updates</a>
+        <a href="#services" class="hover:text-blue-700 transition">Services</a>
+        <a href="#links" class="hover:text-blue-700 transition">Important Links</a>
+        <a href="#about" class="hover:text-blue-700 transition">About</a>
+        <a href="#reviews" class="hover:text-blue-700 transition">Reviews</a>
+        <a href="#contact" class="hover:text-blue-700 transition">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a href="https://wa.me/917800504223?text=Hello%20Vivek%20Computer,%20mujhe%20service%20chahiye." target="_blank" rel="noopener"
+           class="hidden sm:flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2.5 rounded-xl shadow-lg shadow-emerald-600/20 transition">
+          <i class="fa-brands fa-whatsapp text-lg"></i> WhatsApp
+        </a>
+        <button id="menuBtn" class="lg:hidden w-11 h-11 rounded-xl bg-slate-100 text-slate-800" aria-label="Open menu">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="mobile-menu lg:hidden border-t border-slate-200 bg-white">
+      <div class="px-4 py-3 space-y-1">
+        <a href="#home" class="block px-3 py-2.5 rounded-lg hover:bg-blue-50">Home</a>
+        <a href="#updates" class="block px-3 py-2.5 rounded-lg hover:bg-blue-50">Jobs &amp; Updates</a>
+        <a href="#services" class="block px-3 py-2.5 rounded-lg hover:bg-blue-50">Services</a>
+        <a href="#links" class="block px-3 py-2.5 rounded-lg hover:bg-blue-50">Important Links</a>
+        <a href="#about" class="block px-3 py-2.5 rounded-lg hover:bg-blue-50">About</a>
+        <a href="#reviews" class="block px-3 py-2.5 rounded-lg hover:bg-blue-50">Reviews</a>
+        <a href="#contact" class="block px-3 py-2.5 rounded-lg hover:bg-blue-50">Contact</a>
+        <a href="https://chat.whatsapp.com/Chu5f1Jkr9H02NJWyDy1d0" target="_blank" rel="noopener"
+           class="block px-3 py-2.5 rounded-lg bg-emerald-50 text-emerald-700 font-bold">Join WhatsApp Group</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="home">
+    <section class="hero grid-bg text-white relative overflow-hidden">
+      <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-cyan-400/20 blur-3xl"></div>
+      <div class="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-amber-400/20 blur-3xl"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="reveal">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/15 text-sm font-semibold text-blue-50 mb-6">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              Computer • Printer • Accessories • CSC Services
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.08] tracking-tight">
+              आपका भरोसेमंद
+              <span class="text-amber-300">Digital & Tech</span>
+              Partner
+            </h1>
+
+            <p class="mt-6 text-blue-100 text-base sm:text-lg leading-relaxed max-w-xl">
+              Laptop/Desktop Repair, Printer Service, Computer Accessories, Online Forms, CSC Government Services,
+              Printing, Scanning और अन्य डिजिटल सेवाएँ — एक ही जगह।
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a href="https://wa.me/917800504223?text=Hello%20Vivek%20Computer,%20mujhe%20service%20chahiye."
+                 target="_blank" rel="noopener"
+                 class="bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold px-6 py-3.5 rounded-xl shadow-xl shadow-emerald-900/20 transition hover:-translate-y-1">
+                <i class="fa-brands fa-whatsapp mr-2"></i> WhatsApp Message
+              </a>
+              <a href="https://maps.app.goo.gl/UHuSBMJMvxbGAaF59" target="_blank" rel="noopener"
+                 class="bg-white text-blue-900 hover:bg-blue-50 font-extrabold px-6 py-3.5 rounded-xl shadow-xl transition hover:-translate-y-1">
+                <i class="fa-solid fa-location-dot mr-2"></i> Shop Location
+              </a>
+              <a href="https://www.instagram.com/vivekcomputerratsar/" target="_blank" rel="noopener"
+                 class="border border-white/30 glass hover:bg-white/15 font-bold px-6 py-3.5 rounded-xl transition">
+                <i class="fa-brands fa-instagram mr-2"></i> Instagram
+              </a>
+            </div>
+
+            <div class="mt-9 grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-xl">
+              <div class="glass border border-white/10 rounded-2xl p-4">
+                <div class="text-2xl font-extrabold">5+ Years</div>
+                <div class="text-xs text-blue-200 mt-1">Tech Experience</div>
+              </div>
+              <div class="glass border border-white/10 rounded-2xl p-4">
+                <div class="text-2xl font-extrabold">5000+</div>
+                <div class="text-xs text-blue-200 mt-1">Happy Customers</div>
+              </div>
+              <div class="glass border border-white/10 rounded-2xl p-4 col-span-2 sm:col-span-1">
+                <div class="text-2xl font-extrabold">All-in-One</div>
+                <div class="text-xs text-blue-200 mt-1">Digital Services</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal flex justify-center lg:justify-end">
+            <div class="relative w-full max-w-lg">
+              <div class="absolute inset-0 bg-cyan-300/20 blur-3xl rounded-full"></div>
+              <div class="relative glass border border-white/20 rounded-[2rem] p-4 sm:p-6 shadow-2xl float">
+                <div class="bg-white rounded-[1.5rem] p-4 sm:p-6 text-slate-900">
+                  <div class="flex items-center justify-between gap-3 border-b border-slate-200 pb-4">
+                    <div class="flex items-center gap-3">
+                      <img src="logo.png" alt="Vivek Computer" class="w-14 h-14 rounded-full object-cover">
+                      <div>
+                        <div class="font-extrabold text-lg">Vivek Computer</div>
+                        <div class="text-xs text-slate-500">Ratsar Kalan, Ballia</div>
+                      </div>
+                    </div>
+                    <span class="text-xs font-bold bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full">
+                      <i class="fa-solid fa-circle-check mr-1"></i>Open
+                    </span>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-3 mt-5">
+                    <div class="bg-blue-50 rounded-2xl p-4">
+                      <i class="fa-solid fa-laptop text-blue-700 text-xl"></i>
+                      <div class="font-bold mt-2 text-sm">Laptop & PC</div>
+                      <div class="text-[11px] text-slate-500 mt-1">Repair & Upgrade</div>
+                    </div>
+                    <div class="bg-amber-50 rounded-2xl p-4">
+                      <i class="fa-solid fa-print text-amber-600 text-xl"></i>
+                      <div class="font-bold mt-2 text-sm">Printer</div>
+                      <div class="text-[11px] text-slate-500 mt-1">Service & Cartridge</div>
+                    </div>
+                    <div class="bg-emerald-50 rounded-2xl p-4">
+                      <i class="fa-solid fa-id-card text-emerald-700 text-xl"></i>
+                      <div class="font-bold mt-2 text-sm">CSC / Online</div>
+                      <div class="text-[11px] text-slate-500 mt-1">Forms & Documents</div>
+                    </div>
+                    <div class="bg-violet-50 rounded-2xl p-4">
+                      <i class="fa-solid fa-computer-mouse text-violet-700 text-xl"></i>
+                      <div class="font-bold mt-2 text-sm">Accessories</div>
+                      <div class="text-[11px] text-slate-500 mt-1">Keyboard, Mouse & More</div>
+                    </div>
+                  </div>
+
+                  <div class="mt-5 grid grid-cols-2 gap-3">
+                    <a href="tel:+917800504223" class="text-center bg-blue-700 hover:bg-blue-800 text-white py-3 rounded-xl font-bold text-sm transition">
+                      <i class="fa-solid fa-phone mr-1"></i> Call
+                    </a>
+                    <a href="https://wa.me/917800504223" target="_blank" rel="noopener" class="text-center bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-bold text-sm transition">
+                      <i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="bg-white/10 border-t border-white/10 overflow-hidden">
+        <div class="min-w-max marquee py-3 text-sm font-semibold text-blue-100">
+          <span class="mx-8">⚡ Laptop & Desktop Repair</span>
+          <span class="mx-8">🖨️ Printer Service</span>
+          <span class="mx-8">💻 Computer Accessories</span>
+          <span class="mx-8">📄 Online Form & CSC Services</span>
+          <span class="mx-8">📍 Vishwakarma Chouk, Ratsar</span>
+          <span class="mx-8">⚡ Laptop & Desktop Repair</span>
+          <span class="mx-8">🖨️ Printer Service</span>
+          <span class="mx-8">💻 Computer Accessories</span>
+          <span class="mx-8">📄 Online Form & CSC Services</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Jobs / Admit Card / Result -->
+    <section id="updates" class="py-16 sm:py-20 bg-slate-100 border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-8">
+          <div>
+            <h2 class="text-3xl sm:text-4xl font-extrabold leading-tight text-slate-900">नई भर्ती, एडमिट कार्ड और रिज़ल्ट</h2>
+            <p class="mt-3 text-slate-600 max-w-xl">हर नई जानकारी सबसे पहले यहीं। फॉर्म भरवाना हो तो Vivek Computer पर आइए। <span id="updStamp" class="block sm:inline text-sm text-slate-500"></span></p>
+          </div>
+          <label class="relative block w-full md:w-72 shrink-0">
+            <span class="sr-only">भर्ती या परीक्षा खोजें</span>
+            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" aria-hidden="true"></i>
+            <input id="updSearch" type="search" placeholder="भर्ती या परीक्षा खोजें" autocomplete="off"
+                   class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600">
+          </label>
+        </div>
+
+        <div id="updGrid" class="upd-grid" aria-live="polite">
+          <div class="upd-box job"><div class="upd-skel"></div><div class="upd-skel"></div><div class="upd-skel"></div></div>
+          <div class="upd-box admit hidden lg:flex"><div class="upd-skel"></div><div class="upd-skel"></div><div class="upd-skel"></div></div>
+          <div class="upd-box result hidden lg:flex"><div class="upd-skel"></div><div class="upd-skel"></div><div class="upd-skel"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-20 sm:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="reveal text-center max-w-3xl mx-auto">
+          <span class="inline-flex px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-xs font-extrabold uppercase tracking-wider">Our Services</span>
+          <h2 class="mt-4 text-3xl sm:text-4xl font-extrabold text-slate-900">हर Tech & Digital काम के लिए एक जगह</h2>
+          <p class="mt-4 text-slate-600">Vivek Computer पर hardware repair, printing, accessories और online services एक ही छत के नीचे।</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+          <div class="reveal card bg-slate-50 rounded-3xl p-7 border border-slate-200">
+            <div class="service-icon w-14 h-14 rounded-2xl bg-blue-700 text-white flex items-center justify-center text-2xl shadow-lg shadow-blue-700/20"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+            <h3 class="mt-5 text-xl font-extrabold">Laptop & PC Repair</h3>
+            <p class="mt-3 text-sm text-slate-600 leading-relaxed">HP, Dell, Lenovo, Acer, Asus आदि के laptop/desktop repair, OS installation, formatting, SSD/RAM upgrade और troubleshooting.</p>
+            <ul class="mt-4 space-y-2 text-xs text-slate-500">
+              <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>SSD & RAM Upgrade</li>
+              <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>Windows Installation</li>
+              <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>Virus / Malware Removal</li>
+            </ul>
+          </div>
+
+          <div class="reveal card bg-slate-50 rounded-3xl p-7 border border-slate-200">
+            <div class="service-icon w-14 h-14 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-2xl shadow-lg shadow-amber-500/20"><i class="fa-solid fa-print"></i></div>
+            <h3 class="mt-5 text-xl font-extrabold">Printer Service</h3>
+            <p class="mt-3 text-sm text-slate-600 leading-relaxed">Inkjet और laser printer servicing, toner refilling, cartridge replacement, paper-jam troubleshooting और maintenance.</p>
+            <ul class="mt-4 space-y-2 text-xs text-slate-500">
+              <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>Toner & Ink Cartridge</li>
+              <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>Head Cleaning & Alignment</li>
+              <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>Printer Maintenance</li>
+            </ul>
+          </div>
+
+          <div class="reveal card bg-slate-50 rounded-3xl p-7 border border-slate-200">
+            <div class="service-icon w-14 h-14 rounded-2xl bg-emerald-600 text-white flex items-center justify-center text-2xl shadow-lg shadow-emerald-600/20"><i class="fa-solid fa-id-card"></i></div>
+            <h3 class="mt-5 text-xl font-extrabold">CSC & Online Services</h3>
+            <p class="mt-3 text-sm text-slate-600 leading-relaxed">Scholarship, admission, recruitment forms, PAN, Voter ID, Aadhaar print और certificates जैसी online सेवाएँ।</p>
+            <ul class="mt-4 space-y-2 text-xs text-slate-500">
+              <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>UP Scholarship & Admissions</li>
+              <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>Income / Caste / Domicile</li>
+              <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>PAN & Online Forms</li>
+            </ul>
+          </div>
+
+          <div class="reveal card bg-slate-50 rounded-3xl p-7 border border-slate-200">
+            <div class="service-icon w-14 h-14 rounded-2xl bg-indigo-600 text-white flex items-center justify-center text-2xl shadow-lg shadow-indigo-600/20"><i class="fa-solid fa-money-bill-transfer"></i></div>
+            <h3 class="mt-5 text-xl font-extrabold">AEPS & Money Services</h3>
+            <p class="mt-3 text-sm text-slate-600 leading-relaxed">AEPS cash withdrawal, balance enquiry, mini statement और money transfer जैसी सुविधाएँ।</p>
+            <ul class="mt-4 space-y-2 text-xs text-slate-500">
+              <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>Cash Withdrawal</li>
+              <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>Balance & Mini Statement</li>
+              <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>Money Transfer</li>
+            </ul>
+          </div>
+
+          <div class="reveal card bg-slate-50 rounded-3xl p-7 border border-slate-200">
+            <div class="service-icon w-14 h-14 rounded-2xl bg-rose-600 text-white flex items-center justify-center text-2xl shadow-lg shadow-rose-600/20"><i class="fa-solid fa-file-pen"></i></div>
+            <h3 class="mt-5 text-xl font-extrabold">Printing & Documentation</h3>
+            <p class="mt-3 text-sm text-slate-600 leading-relaxed">Hindi/English typing, resume, project file, colour/B&W printing, scanning, photocopy और lamination.</p>
+            <ul class="mt-4 space-y-2 text-xs text-slate-500">
+              <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>Hindi & English Typing</li>
+              <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>Binding & Lamination</li>
+              <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>Scanning & Photocopy</li>
+            </ul>
+          </div>
+
+          <div class="reveal card bg-slate-50 rounded-3xl p-7 border border-slate-200">
+            <div class="service-icon w-14 h-14 rounded-2xl bg-violet-600 text-white flex items-center justify-center text-2xl shadow-lg shadow-violet-600/20"><i class="fa-solid fa-computer-mouse"></i></div>
+            <h3 class="mt-5 text-xl font-extrabold">Computer Accessories</h3>
+            <p class="mt-3 text-sm text-slate-600 leading-relaxed">Keyboard, mouse, pendrive, memory card, HDMI/VGA/power cable, headphones, chargers और अन्य accessories.</p>
+            <ul class="mt-4 space-y-2 text-xs text-slate-500">
+              <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>Keyboard & Mouse</li>
+              <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>Pendrive & Memory Card</li>
+              <li><i class="fa-solid fa-check text-emerald-600 mr-2"></i>Cables & Peripherals</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick links -->
+    <section id="links" class="py-20 sm:py-24 bg-slate-100 border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="reveal text-center max-w-3xl mx-auto">
+          <span class="inline-flex px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-700 text-xs font-extrabold uppercase tracking-wider">Quick Access</span>
+          <h2 class="mt-4 text-3xl sm:text-4xl font-extrabold">Important Govt & Portal Links</h2>
+          <p class="mt-4 text-slate-600">Students और citizens के लिए उपयोगी official portals.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 mt-12">
+          <div class="reveal bg-white rounded-3xl p-6 border border-slate-200 soft-shadow">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-11 h-11 rounded-xl bg-blue-700 text-white flex items-center justify-center"><i class="fa-solid fa-graduation-cap"></i></div>
+              <h3 class="font-extrabold text-lg">Jobs & Results</h3>
+            </div>
+            <div class="space-y-2">
+              <a class="portal" href="https://sarkariresult.com" target="_blank" rel="noopener">Sarkari Result <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a class="portal" href="https://upsssc.gov.in" target="_blank" rel="noopener">UPSSSC Portal <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a class="portal" href="https://ssc.nic.in" target="_blank" rel="noopener">SSC Recruitment <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a class="portal" href="https://ibps.in" target="_blank" rel="noopener">IBPS Bank Exams <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </div>
+
+          <div class="reveal bg-white rounded-3xl p-6 border border-slate-200 soft-shadow">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-11 h-11 rounded-xl bg-amber-500 text-white flex items-center justify-center"><i class="fa-solid fa-school"></i></div>
+              <h3 class="font-extrabold text-lg">Education</h3>
+            </div>
+            <div class="space-y-2">
+              <a class="portal" href="https://scholarship.up.gov.in" target="_blank" rel="noopener">UP Scholarship <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a class="portal" href="https://vbspu.ac.in" target="_blank" rel="noopener">VBSPU Jaunpur <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a class="portal" href="https://www.mgkvp.ac.in" target="_blank" rel="noopener">MGKVP Varanasi <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a class="portal" href="https://www.cuet.samarth.ac.in" target="_blank" rel="noopener">CUET UG / PG <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </div>
+
+          <div class="reveal bg-white rounded-3xl p-6 border border-slate-200 soft-shadow">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-11 h-11 rounded-xl bg-emerald-600 text-white flex items-center justify-center"><i class="fa-solid fa-address-card"></i></div>
+              <h3 class="font-extrabold text-lg">Govt Documents</h3>
+            </div>
+            <div class="space-y-2">
+              <a class="portal" href="https://edistrict.up.gov.in" target="_blank" rel="noopener">UP E-District <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a class="portal" href="https://uidai.gov.in" target="_blank" rel="noopener">Aadhaar UIDAI <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a class="portal" href="https://voters.eci.gov.in" target="_blank" rel="noopener">Voter Service ECI <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a class="portal" href="https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html" target="_blank" rel="noopener">PAN Card NSDL <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-20 sm:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+          <div class="reveal">
+            <span class="inline-flex px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-xs font-extrabold uppercase tracking-wider">About Vivek Computer</span>
+            <h2 class="mt-4 text-3xl sm:text-4xl font-extrabold leading-tight">Ratsar Kalan & Ballia के लिए आपका local tech partner</h2>
+            <p class="mt-5 text-slate-600 leading-relaxed">
+              Vivek Computer, Vishwakarma Chouk / Gandhi Ashram, Ratsar Kalan में computer repair, printer maintenance,
+              accessories और government online services के लिए बनाया गया one-stop destination है।
+            </p>
+            <div class="mt-7 grid grid-cols-2 gap-4">
+              <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+                <div class="text-3xl font-extrabold text-blue-700">5+ Years</div>
+                <div class="text-xs text-slate-500 mt-1">Tech Experience</div>
+              </div>
+              <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+                <div class="text-3xl font-extrabold text-amber-500">5000+</div>
+                <div class="text-xs text-slate-500 mt-1">Happy Customers</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal bg-slate-950 text-white rounded-[2rem] p-7 sm:p-9 relative overflow-hidden soft-shadow">
+            <div class="absolute -right-20 -top-20 w-56 h-56 bg-blue-600/30 rounded-full blur-3xl"></div>
+            <div class="relative">
+              <div class="flex items-center gap-4">
+                <img src="logo.png" alt="Vivek Computer" class="w-16 h-16 rounded-full object-cover">
+                <div>
+                  <div class="text-xl font-extrabold">Why Vivek Computer?</div>
+                  <div class="text-sm text-slate-400">Fast • Friendly • Digital</div>
+                </div>
+              </div>
+              <div class="mt-7 space-y-5">
+                <div class="flex gap-3"><i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i><div><b>Repair & Upgrade</b><p class="text-xs text-slate-400 mt-1">Laptop, desktop और printer related services.</p></div></div>
+                <div class="flex gap-3"><i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i><div><b>Online & CSC Support</b><p class="text-xs text-slate-400 mt-1">Forms, documents, printing और portal support.</p></div></div>
+                <div class="flex gap-3"><i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i><div><b>Accessories</b><p class="text-xs text-slate-400 mt-1">Keyboard, mouse और daily-use computer accessories.</p></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="py-20 sm:py-24 bg-slate-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="reveal text-center max-w-3xl mx-auto">
+          <span class="inline-flex px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-xs font-extrabold uppercase tracking-wider">Customer Reviews</span>
+          <h2 class="mt-4 text-3xl sm:text-4xl font-extrabold">Our Friends & Clients Say</h2>
+          <p class="mt-4 text-slate-600">हमारे संतुष्ट ग्राहकों की असली photos और उनके experience — एक नज़र में।</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+          <div class="reveal card bg-white rounded-3xl p-6 border border-slate-200">
+            <div class="text-amber-400 text-sm">★★★★★ <span class="text-slate-400 ml-1">(5.0)</span></div>
+            <p class="mt-4 text-sm text-slate-600 italic leading-relaxed">“Vivek Computer par laptop repairing and printer servicing ka kaam sabse behtareen hota hai. Vishwakarma Chouk par best shop hai!”</p>
+            <div class="mt-6 flex items-center gap-3 border-t pt-4">
+              <img src="ashwani_kumar.jpg" alt="Ashwani Kumar" class="w-11 h-11 rounded-full object-cover">
+              <div><div class="font-bold text-sm">Ashwani Kumar</div><div class="text-xs text-slate-400">Customer</div></div>
+            </div>
+          </div>
+
+          <div class="reveal card bg-white rounded-3xl p-6 border border-slate-200">
+            <div class="text-amber-400 text-sm">★★★★★ <span class="text-slate-400 ml-1">(5.0)</span></div>
+            <p class="mt-4 text-sm text-slate-600 italic leading-relaxed">“CSC services ke liye mujhe kahin aur nahi jana padta. Vivek Computer par online form aur scholarship ka kaam turant ho jata hai.”</p>
+            <div class="mt-6 flex items-center gap-3 border-t pt-4">
+              <img src="adarsh_sharma.jpg" alt="Adarsh Sharma" class="w-11 h-11 rounded-full object-cover">
+              <div><div class="font-bold text-sm">Adarsh Sharma</div><div class="text-xs text-slate-400">Customer</div></div>
+            </div>
+          </div>
+
+          <div class="reveal card bg-white rounded-3xl p-6 border border-slate-200">
+            <div class="text-amber-400 text-sm">★★★★★ <span class="text-slate-400 ml-1">(5.0)</span></div>
+            <p class="mt-4 text-sm text-slate-600 italic leading-relaxed">“Genuine computer accessories aur best prices milte hain yahan. Friendly nature aur fast service experience raha mera.”</p>
+            <div class="mt-6 flex items-center gap-3 border-t pt-4">
+              <img src="abhay_chauhan.jpg" alt="Abhay Chauhan" class="w-11 h-11 rounded-full object-cover">
+              <div><div class="font-bold text-sm">Abhay Chauhan</div><div class="text-xs text-slate-400">Customer</div></div>
+            </div>
+          </div>
+
+          <div class="reveal card bg-white rounded-3xl p-6 border border-slate-200">
+            <div class="text-amber-400 text-sm">★★★★★ <span class="text-slate-400 ml-1">(5.0)</span></div>
+            <p class="mt-4 text-sm text-slate-600 italic leading-relaxed">“Gandhi Ashram ke samne Ratsar mein ye sabse reliable computer store hai. Keyboard aur mouse ki quality ekdum premium hai.”</p>
+            <div class="mt-6 flex items-center gap-3 border-t pt-4">
+              <img src="sarang.jpg" alt="Sarang Pratap Singh" class="w-11 h-11 rounded-full object-cover">
+              <div><div class="font-bold text-sm">Sarang Pratap Singh</div><div class="text-xs text-slate-400">Customer</div></div>
+            </div>
+          </div>
+
+          <div class="reveal card bg-white rounded-3xl p-6 border border-slate-200 md:col-span-2 lg:col-span-1">
+            <div class="text-amber-400 text-sm">★★★★★ <span class="text-slate-400 ml-1">(5.0)</span></div>
+            <p class="mt-4 text-sm text-slate-600 italic leading-relaxed">“Printing, scanning aur digital money withdrawal (AEPS) ki suvidha ekdam fast hai. Highly recommended to everyone in Ballia!”</p>
+            <div class="mt-6 flex items-center gap-3 border-t pt-4">
+              <img src="baliram_gupta.jpg" alt="Baliram Gupta" class="w-11 h-11 rounded-full object-cover">
+              <div><div class="font-bold text-sm">Baliram Gupta</div><div class="text-xs text-slate-400">Customer</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 sm:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="reveal text-center max-w-3xl mx-auto">
+          <span class="inline-flex px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-xs font-extrabold uppercase tracking-wider">Get In Touch</span>
+          <h2 class="mt-4 text-3xl sm:text-4xl font-extrabold">Vivek Computer पर आइए</h2>
+          <p class="mt-4 text-slate-600">Call, WhatsApp, Email, Instagram या सीधे shop location पर पहुँचें।</p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-6 mt-12">
+          <div class="reveal card p-7 rounded-3xl bg-slate-50 border border-slate-200 text-center">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-blue-700 text-white flex items-center justify-center text-xl"><i class="fa-solid fa-location-dot"></i></div>
+            <h3 class="mt-4 text-lg font-extrabold">Shop Location</h3>
+            <p class="mt-2 text-sm text-slate-600">Ratsar Gandhi Ashram (Vishwakarma Chouk)<br>Ballia - 277123, Uttar Pradesh</p>
+            <a href="https://maps.app.goo.gl/UHuSBMJMvxbGAaF59" target="_blank" rel="noopener" class="inline-flex mt-5 px-4 py-2.5 rounded-xl bg-blue-700 text-white text-sm font-bold hover:bg-blue-800 transition">
+              <i class="fa-solid fa-map-location-dot mr-2"></i>Open Google Maps
+            </a>
+          </div>
+
+          <div class="reveal card p-7 rounded-3xl bg-slate-50 border border-slate-200 text-center">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-emerald-600 text-white flex items-center justify-center text-xl"><i class="fa-solid fa-phone-volume"></i></div>
+            <h3 class="mt-4 text-lg font-extrabold">Call & WhatsApp</h3>
+            <p class="mt-2 text-sm text-slate-600">Primary: <b>7800504223</b><br>Alternative: <b>9140142361</b></p>
+            <div class="flex justify-center gap-2 mt-5">
+              <a href="tel:+917800504223" class="px-4 py-2.5 rounded-xl bg-blue-700 text-white text-sm font-bold">Call</a>
+              <a href="https://wa.me/917800504223" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-xl bg-emerald-600 text-white text-sm font-bold">WhatsApp</a>
+            </div>
+          </div>
+
+          <div class="reveal card p-7 rounded-3xl bg-slate-50 border border-slate-200 text-center">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-pink-600 text-white flex items-center justify-center text-xl"><i class="fa-solid fa-at"></i></div>
+            <h3 class="mt-4 text-lg font-extrabold">Online Connect</h3>
+            <p class="mt-2 text-sm text-slate-600">Email: <b>vivekratsar@gmail.com</b><br>Official Instagram: @vivekcomputerratsar</p>
+            <div class="flex justify-center gap-2 mt-5">
+              <a href="mailto:vivekratsar@gmail.com" class="px-4 py-2.5 rounded-xl bg-slate-900 text-white text-sm font-bold">Email</a>
+              <a href="https://www.instagram.com/vivekcomputerratsar/" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-xl bg-pink-600 text-white text-sm font-bold">Instagram</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal mt-8 rounded-3xl overflow-hidden bg-slate-950 text-white p-7 sm:p-9 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <div class="text-2xl font-extrabold">Vivek Computer WhatsApp Group</div>
+            <div class="text-slate-400 text-sm mt-1">Shop updates, offers और useful information के लिए group join करें।</div>
+          </div>
+          <a href="https://chat.whatsapp.com/Chu5f1Jkr9H02NJWyDy1d0" target="_blank" rel="noopener"
+             class="shrink-0 bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold px-6 py-3.5 rounded-xl transition hover:-translate-y-1">
+            <i class="fa-brands fa-whatsapp mr-2"></i> Join WhatsApp Group
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-950 text-slate-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-3">
+            <img src="logo.png" alt="Vivek Computer Logo" class="w-14 h-14 rounded-full object-cover">
+            <div>
+              <div class="text-xl font-extrabold text-white">VIVEK COMPUTER</div>
+              <div class="text-xs text-slate-500">Ratsar Kalan, Ballia</div>
+            </div>
+          </div>
+          <p class="mt-4 max-w-lg text-sm leading-relaxed text-slate-400">
+            Laptop/Desktop Repair, Printer Service, Accessories, CSC & Online Services, Printing और Digital Support.
+          </p>
+        </div>
+        <div>
+          <h4 class="text-white font-extrabold mb-4">Quick Links</h4>
+          <div class="space-y-2 text-sm">
+            <a href="#services" class="block hover:text-white">Services</a>
+            <a href="#links" class="block hover:text-white">Important Links</a>
+            <a href="#reviews" class="block hover:text-white">Reviews</a>
+            <a href="#contact" class="block hover:text-white">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-white font-extrabold mb-4">Contact</h4>
+          <div class="space-y-2 text-sm text-slate-400">
+            <div><i class="fa-solid fa-phone text-amber-400 w-5"></i> 7800504223</div>
+            <div><i class="fa-solid fa-phone text-amber-400 w-5"></i> 9140142361</div>
+            <div><i class="fa-solid fa-envelope text-amber-400 w-5"></i> vivekratsar@gmail.com</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10 mt-10 pt-6 flex flex-col sm:flex-row justify-between gap-3 text-xs text-slate-500">
+        <div>© 2026 Vivek Computer, Ratsar Kalan, Ballia. All Rights Reserved.</div>
+        <div>Designed for Vivek Computer</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating actions -->
+  <div class="fixed right-4 bottom-5 z-40 flex flex-col gap-3">
+    <a class="fab w-12 h-12 rounded-full bg-emerald-500 text-white flex items-center justify-center pulse-ring"
+       href="https://wa.me/917800504223?text=Hello%20Vivek%20Computer,%20mujhe%20service%20chahiye."
+       target="_blank" rel="noopener" aria-label="WhatsApp">
+      <i class="fa-brands fa-whatsapp text-2xl"></i>
+    </a>
+    <a class="fab w-12 h-12 rounded-full bg-blue-700 text-white flex items-center justify-center"
+       href="tel:+917800504223" aria-label="Call">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+  </div>
+
+  <!-- WhatsApp group popup -->
+  <div id="groupModal" class="hidden fixed inset-0 z-[100] modal-backdrop items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-7 shadow-2xl relative">
+      <button id="closeModal" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200" aria-label="Close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="w-16 h-16 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl">
+        <i class="fa-brands fa-whatsapp"></i>
+      </div>
+      <h3 class="text-2xl font-extrabold mt-5">Vivek Computer WhatsApp Group</h3>
+      <p class="text-slate-600 mt-2 text-sm leading-relaxed">
+        Shop updates, offers और useful information पाने के लिए हमारे WhatsApp group से जुड़ें।
+      </p>
+      <a href="https://chat.whatsapp.com/Chu5f1Jkr9H02NJWyDy1d0" target="_blank" rel="noopener"
+         class="mt-6 block text-center bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 rounded-xl transition">
+        <i class="fa-brands fa-whatsapp mr-2"></i> Join Group
+      </a>
+      <button id="laterBtn" class="mt-2 w-full py-3 text-sm font-semibold text-slate-500 hover:text-slate-800">Maybe later</button>
+    </div>
+  </div>
+
+  <style>
+    .portal{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:.75rem .9rem;border-radius:.85rem;background:#f8fafc;
+      font-size:.875rem;font-weight:600;color:#334155;
+      transition:.25s ease;
+    }
+    .portal:hover{background:#eff6ff;color:#2563eb;transform:translateX(4px)}
+  </style>
+
+  <script>
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn?.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+      menuBtn.innerHTML = mobileMenu.classList.contains('open')
+        ? '<i class="fa-solid fa-xmark text-xl"></i>'
+        : '<i class="fa-solid fa-bars text-xl"></i>';
+    });
+    mobileMenu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      menuBtn.innerHTML = '<i class="fa-solid fa-bars text-xl"></i>';
+    }));
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // WhatsApp group popup: appears once per browser, after 6 seconds
+    const modal = document.getElementById('groupModal');
+    const closeModal = () => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      sessionStorage.setItem('vivekGroupPopupSeen','1');
+    };
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+    document.getElementById('laterBtn').addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+
+    if(!sessionStorage.getItem('vivekGroupPopupSeen')){
+      setTimeout(() => {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }, 6000);
+    }
+  </script>
+  <dialog id="updDialog" class="upd-dialog" aria-labelledby="updDlgTitle"></dialog>
+  <script src="assets/updates.js" defer></script>
+</body>
+</html>
